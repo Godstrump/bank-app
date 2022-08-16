@@ -1,0 +1,35 @@
+<div data-ng-include="'/app/components/header.component.html'" />
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-form-group" *ngIf="message">
+      <p class="text-danger">{{ message }}</p>
+    </div>
+    <div class="login-form-group">
+      <span class="login-icon"><i class="fa fa-user"></i></span>
+      <input
+        type="email"
+        class="login-form-control"
+        placeholder="Email"
+        ng-model="email"
+      />
+    </div>
+    <div class="login-form-group">
+      <span class="login-icon"><i class="fa fa-key"></i></span>
+      <input
+        type="password"
+        class="login-form-control"
+        placeholder="Password"
+        ng-model="password"
+      />
+    </div>
+    <div class="login-form-group">
+      <button type="submit" class="submit" ng-click="onLogin()">Log In</button>
+    </div>
+
+    <div class="login-form-group">
+      <a class="register link" href="#/register">
+        Don't have an account? Register
+      </a>
+    </div>
+  </div>
+</div>
