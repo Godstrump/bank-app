@@ -1,39 +1,22 @@
-app.controller('LoginController', function ($scope, customersService) {
+app.controller('LoginController', ['$scope', '$state', '$http', 'authFactory',
+function ($scope, authService) {
+  //I like to have an init() for controllers that need to perform some initialization. Keeps things in
+  //one place...not required though especially in the simple example below
+  
+  const email = $scope.email;
+  const password = $scope.password;
 
-    //I like to have an init() for controllers that need to perform some initialization. Keeps things in
-    //one place...not required though especially in the simple example below
-    init();
+  $scope.message = '';
+  onLogin = () => {
+    if (!email && !password) return;
+    $scope.loading = !$scope.loading;
 
-    function init() {
-        $scope.customers = customersService.getCustomers();
-    }
-
-    $scope.insertCustomer = function () {
-        var firstName = $scope.newCustomer.firstName;
-        var lastName = $scope.newCustomer.lastName;
-        var city = $scope.newCustomer.city;
-        customersService.insertCustomer(firstName, lastName, city);
-        $scope.newCustomer.firstName = '';
-        $scope.newCustomer.lastName = '';
-        $scope.newCustomer.city = '';
-    };
-
-    $scope.deleteCustomer = function (id) {
-        customersService.deleteCustomer(id);
-    };
-
-    loading = false;
-message = '';
-  onLogin({ email, password }: any) {
-    if (!email && password!) return;
-    this.loading = !this.loading;
-
-    this.authService.signIn(email, password).catch((err) => {
-      this.loading = !this.loading;
-      this.message = 'Invalid email and password';
+    authFactory.signInWithEmailAndPassword(email, password).catch((err) => {
+      $scope.loading = !this.loading;
+      $scope.message = 'Invalid email and password';
       setTimeout(() => {
-        this.message = '';
+        $scope.message = '';
       }, 3000);
     });
   }
-});
+}]);

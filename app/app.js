@@ -43,19 +43,17 @@ app.config(function ($routeProvider) {
     $routeProvider
         .when('/',
             {
-                controller: 'CustomersController',
-                templateUrl: '/app/partials/login/login.component.html'
-            })
-        //Define a route that has a route parameter in it (:customerID)
-        .when('/register/',
-            {
-                controller: 'CustomerOrdersController',
+                controller: 'RegisterController',
                 templateUrl: '/app/partials/register/register.component.html'
             })
-        //Define a route that has a route parameter in it (:customerID)
+        .when('/login',
+            {
+                controller: 'LoginController',
+                templateUrl: '/app/partials/login/login.component.html'
+            })
         .when('/dashboard',
             {
-                controller: 'OrdersController',
+                controller: 'DashboardController',
                 templateUrl: '/app/partials/dashboard/dashboard.component.html'
             })
         .otherwise({ redirectTo: '/' });

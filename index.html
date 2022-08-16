@@ -1,32 +1,26 @@
 ﻿<!DOCTYPE html>
-<html data-ng-app="BankApp">
+<html lang="EN" data-ng-app="BankApp">
 <head>
-    <title>Customer Manager</title>
+    <meta charset=utf-8>
+    <meta name="viewport" content="width=device-width">
+    <title>Fidelity Bank App</title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/bootstrap-responsive.min.css" rel="stylesheet" />
     <link href="Content/customerManagementStyles.css" rel="stylesheet" />
 </head>
 <body>
 
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="brand " href="#/">
-                    <img src="Content/Images/people.png" alt="logo"> Customer Manager
-                </a>
-                <ul class="nav nav-pills" data-ng-controller="NavbarController">
-                    <li data-ng-class="{'active':getClass('/customers')}"><a href="#/customers">Customers</a></li>
-                    <li data-ng-class="{'active':getClass('/orders')}"><a href="#/orders">Orders</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
     <!-- Note that AngularJS 1.2+ now has a built-in ng-animation direction. Left in animated-view to show a 
          custom directive -->
-    <div animated-view></div>
+    <div animated-view>
+        <div data-ng-include="'/app/partials/register/register.component.html'" />
+    </div>
 
     <!-- Vendor Libs: jQuery only used for Bootstrap functionality -->
+    <script src="https://cdn.firebase.com/js/client/1.0.17/firebase.js"></script>
+    <script src="https://cdn.firebase.com/js/simple-login/1.6.2/firebase-simple-login.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/{{angularFireVersion}}/angularfire.js"></script>
+    
     <script src="Scripts/angular.js"></script>
     <script src="Scripts/angular-route.js"></script>
     <script src="Scripts/jquery.min.js"></script>
@@ -34,11 +28,10 @@
     <!-- UI Libs -->
     <script src="Scripts/bootstrap.js"></script>
 
-
     <!-- App libs -->
     <script src="app/app.js"></script>
-    <script src="app/controllers/controllers.js"></script>
-    <script src="app/services/customersService.js"></script>
+    <script src="app/controllers/login.controller.js"></script>
+    <script src="app/services/auth.factory"></script>
     <script src="app/directives/animatedView.js"></script>
 </body>
 </html>
