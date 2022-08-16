@@ -31,11 +31,11 @@ const firebaseConfig = {
     measurementId: 'G-FL00CH86KX',
 }
 
-firebase.initializeApp(firebaseConfig)
 
 app.controller('FirebaseCtrl', function ($firebaseObject) {
     const ref = firebase.database().child('angular')
     this.object = $firebaseObject(ref)
+    firebase.initializeApp(firebaseConfig)
 })
 
 //This configures the routes and associates each route with a view and a controller
